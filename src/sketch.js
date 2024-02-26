@@ -7,24 +7,28 @@ function setup() {
   myCanvas.parent("canvas-parent");
 }
 let clicked = false
+
+
 function draw() {
   push();
     translate (0,100);
     drawBackground();
-  pop()
+  pop();
     
+    // HIDDEN CREATURE CALLING FUNCTION
+    drawFlower(250, 227, 0.49);
+  
   push();
     translate(250,250);
-    draw7ball()
-    draw8ball()
+    draw7ball();
+    draw8ball();
     
     if (clicked == true){
       drawEye();
       // draw8ball(0.5)
     }
-   
-    
   pop();
+
   }
   
   function drawBackground(){
@@ -121,4 +125,62 @@ function draw() {
       //   mouseY > 150 )
       //   clicked= !clicked
   
+  }
+
+  //---- HIDDEN SURPRISE FUNCTION!!!-----
+  function drawFlower(flowerX, flowerY, flowerSC){
+    push();
+    translate(flowerX, flowerY);
+    scale(flowerSC);
+    //----- STEM -------
+    push();
+    fill(50, 100, 20);
+    stroke(0, 150, 0);
+    strokeWeight(2);
+      quad(0, 150, 70, 125, 110, 150, 70, 175);
+      quad(0, 150, -70, 125, -110, 150, -70, 175);
+      rect(-15, 0, 30, 250, 10);
+    pop();
+    //----FLOWER----
+    push();
+     scale(0.8);
+     fill(170, 220, 250);
+     stroke(190, 240, 250);
+     strokeWeight(3);
+    // --- PETALS ---
+     ellipse(-60, 70, 150, 160);
+     ellipse(60, 70, 150, 160);
+     ellipse(90, -35, 160);
+     ellipse(-90, -35, 160);
+      ellipse(0, -100, 150, 160);
+    // --- CENTER OF FLOWER ---
+     fill(250, 220, 180)
+     stroke(250, 230, 230);
+     ellipse(0, 0, 200, 120);
+    pop();
+    pop();
+    // ---- EYE -----
+     push();
+    translate (flowerX, flowerY);
+    scale(0.4);
+    //--- EYELID ---
+    fill(250, 220, 180);
+    stroke(250, 230, 230);
+    strokeWeight(2);
+    ellipse(0, 0, 250, 150);
+    push();
+    //----EYE---
+    fill(250);
+    arc(0, 0, 247, 117, 0, PI);
+    arc(0, 0, 247, 117, PI, 0);
+    pop();
+    //----PUPIL---
+    noStroke();
+    fill(0, 100, 230);
+    ellipse(0, -5, 100);
+    fill(0);
+    ellipse(0, -5, 60);
+    fill(250);
+    ellipse(-10, -25, 15, 20);
+   pop();
   }
