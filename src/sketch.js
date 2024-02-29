@@ -1,3 +1,5 @@
+
+let x = 50
 function setup() {
   // These lines are fitting our canvas
   // where we want in the DOM
@@ -6,25 +8,17 @@ function setup() {
   let myCanvas = createCanvas(400, 400);
   myCanvas.parent("canvas-parent");
 }
-let clicked = false
 function draw() {
   push();
     translate (0,100);
     drawBackground();
   pop()
-    
-  push();
-    translate(250,250);
-    draw7ball()
-    draw8ball()
-    
-    if (clicked == true){
-      drawEye();
-      // draw8ball(0.5)
-    }
-   
-    
-  pop();
+
+  draw8ball(x,250);
+  draw7ball(250,250);
+  x++
+  if(x >= 250)
+    drawEye(250,250)
   }
   
   function drawBackground(){
@@ -51,74 +45,61 @@ function draw() {
     ellipse(400,82,200,120)
   }
   
-  function drawEye(){
-     //eye
-    noStroke()
-    fill('#033500')
-    ellipse(-50,80,180,50)
-    stroke(8)
-    fill('#F4F0FF')
-    ellipse(0,0,180);
-    strokeWeight(8);
-    //pupil
-    fill('#800000');
-    ellipse(0,-20,70);
-    fill('#17242F');
-    //highlight
-    ellipse(0,-20,30);
-    fill(255);
-    noStroke()
-    ellipse(-12,-30,20);
+  function drawEye(eyex,eyey){
+   //eye
+   push();
+   translate(eyex,eyey)
+   stroke(8)
+   fill('#F4F0FF')
+   ellipse(0,0,180);
+   strokeWeight(8);
+   //pupil
+   fill('#800000');
+   ellipse(0,-20,70);
+   fill('#17242F');
+   //highlight
+   ellipse(0,-20,30);
+   fill(255);
+   push();
+   noStroke()
+   ellipse(-12,-30,20);
+  
+   pop();
   }
   
-  function draw8ball(s){
-     //8 ball code
-    
-    noStroke();
-     fill('#033500');
-    ellipse(-240,-9,180,50);
-    stroke(8);
-    fill('#17242F');
-    ellipse(-200,-80,150);
-    fill(255);
-    ellipse(-200,-100,90);
-    scale(s)
-    //8 ball text
-    noFill();
-    strokeWeight(8);
-    ellipse(-200,-90,30);
-    ellipse(-200,-115,20);
-    
+  function draw8ball(ballx,bally){
+   //8 ball code
+  push();
+  translate(ballx,bally)
+  strokeWeight(8);
+  fill('#17242F');
+  ellipse(0,-80,150);
+  fill(255);
+  ellipse(0,-100,90);
+  //8 ball text
+  noFill();
+  ellipse(0,-90,30);
+  ellipse(0,-115,20);
+  pop();
+  
   }
   
-  function draw7ball(){
+  function draw7ball(x,y){
     //Ball
-    strokeWeight(9);
-    push();
-    noStroke()
-     fill('#033500');
-    ellipse(-50,80,180,50);
-    pop();
-    fill('#800000');
-    ellipse(0,0,180);
-    fill('#F4F0FF');
-    ellipse(0,0,80)
-    
-    //7 text
-    line(10,-19,0,25)
-    line(10,-19,-12,-19)
-  }
+  push();
+  translate(x,y)
+  strokeWeight(9);
+  fill('#800000');
+  ellipse(0,0,180);
+  fill('#F4F0FF');
+  ellipse(0,0,80)
   
+  //7 text
+  line(10,-19,0,25)
+  line(10,-19,-12,-19)
+  pop();
+  }
   function mouseClicked(){
-    if (mouseX < 340 && 
-        mouseX > 160 && 
-        mouseY < 340 && 
-        mouseY > 160 )
-        clicked= !clicked
-      // if (mouseX < 0 && 
-      //   mouseX > 150 && 
-      //   mouseY < -50 && 
-      //   mouseY > 150 )
-      //   clicked= !clicked
-  
-  }
+   if (x > 50)
+   x = 50
+    }
