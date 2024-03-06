@@ -16,16 +16,14 @@ function draw() {
     translate (0,100);
     drawBackground();
   pop()
-
+ // HIDDEN CREATURE CALLING FUNCTION
+ drawFlower(250, 222, 0.45);
   draw8ball(x,250);
-  draw7ball(250,250);
+  //draw7ball(250,250);
   x++
   if(x >= 250)
     drawEye(250,250)
 
-    
-    // HIDDEN CREATURE CALLING FUNCTION
-    drawFlower(250, 227, 0.49);
 
   }
   
