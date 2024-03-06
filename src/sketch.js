@@ -1,5 +1,6 @@
 
 let x = 50
+let clicked = false
 function setup() {
   // These lines are fitting our canvas
   // where we want in the DOM
@@ -8,6 +9,8 @@ function setup() {
   let myCanvas = createCanvas(400, 400);
   myCanvas.parent("canvas-parent");
 }
+
+
 function draw() {
   push();
     translate (0,100);
@@ -19,6 +22,11 @@ function draw() {
   x++
   if(x >= 250)
     drawEye(250,250)
+
+    
+    // HIDDEN CREATURE CALLING FUNCTION
+    drawFlower(250, 227, 0.49);
+
   }
   
   function drawBackground(){
@@ -103,3 +111,63 @@ function draw() {
    if (x > 50)
    x = 50
     }
+  }
+
+  //---- HIDDEN SURPRISE FUNCTION!!!-----
+  function drawFlower(flowerX, flowerY, flowerSC){
+    push();
+    translate(flowerX, flowerY);
+    scale(flowerSC);
+    //----- STEM -------
+    push();
+    fill(50, 100, 20);
+    stroke(0, 150, 0);
+    strokeWeight(2);
+      quad(0, 150, 70, 125, 110, 150, 70, 175);
+      quad(0, 150, -70, 125, -110, 150, -70, 175);
+      rect(-15, 0, 30, 250, 10);
+    pop();
+    //----FLOWER----
+    push();
+     scale(0.8);
+     fill(170, 220, 250);
+     stroke(190, 240, 250);
+     strokeWeight(3);
+    // --- PETALS ---
+     ellipse(-60, 70, 150, 160);
+     ellipse(60, 70, 150, 160);
+     ellipse(90, -35, 160);
+     ellipse(-90, -35, 160);
+      ellipse(0, -100, 150, 160);
+    // --- CENTER OF FLOWER ---
+     fill(250, 220, 180)
+     stroke(250, 230, 230);
+     ellipse(0, 0, 200, 120);
+    pop();
+    pop();
+    // ---- EYE -----
+     push();
+    translate (flowerX, flowerY);
+    scale(0.4);
+    //--- EYELID ---
+    fill(250, 220, 180);
+    stroke(250, 230, 230);
+    strokeWeight(2);
+    ellipse(0, 0, 250, 150);
+    push();
+    //----EYE---
+    fill(250);
+    arc(0, 0, 247, 117, 0, PI);
+    arc(0, 0, 247, 117, PI, 0);
+    pop();
+    //----PUPIL---
+    noStroke();
+    fill(0, 100, 230);
+    ellipse(0, -5, 100);
+    fill(0);
+    ellipse(0, -5, 60);
+    fill(250);
+    ellipse(-10, -25, 15, 20);
+   pop();
+  }
+
