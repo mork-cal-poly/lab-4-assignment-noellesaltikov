@@ -110,7 +110,7 @@ function draw() {
   function mouseClicked(){
    if (x > 50)
    x = 50
-    }
+  
   }
 
   //---- HIDDEN SURPRISE FUNCTION!!!-----
